@@ -4,29 +4,29 @@ EXPOSE 5000
 ENV ASPNETCORE_ENVIRONMENT=Production
 ENV ASPNETCORE_URLS=http://*:5000
 
-/bin/sh -c apt-get -y update
-/bin/sh -c apt-get -y install apt-utils
-/bin/sh -c apt-get -y install wget
-/bin/sh -c apt-get -y install apt-transport-https
-/bin/sh -c apt-get -y install unzip
-/bin/sh -c apt-get -y install acl
-/bin/sh -c apt-get -y install libssl1.0
-/bin/sh -c wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
-/bin/sh -c dpkg -i packages-microsoft-prod.deb
-/bin/sh -c apt-get -y update
-/bin/sh -c apt-get -y install aspnetcore-runtime-5.0
-/bin/sh -c mkdir -p /var/www/remotely
-/bin/sh -c mkdir /config
-/bin/sh -c wget -q https://github.com/gtntdev/Remotely/releases/download/v2022.07.06.2131/Remotely_Server_Linux-x64.zip
-/bin/sh -c unzip -o Remotely_Server_Linux-x64.zip -d /var/www/remotely
-/bin/sh -c rm Remotely_Server_Linux-x64.zip
-/bin/sh -c mkdir -p /remotely-data
-/bin/sh -c sed -i 's/DataSource=Remotely.db/DataSource=\/remotely-data\/Remotely.db/' /var/www/remotely/appsettings.json
+RUN /bin/sh -c apt-get -y update
+RUN /bin/sh -c apt-get -y install apt-utils
+RUN /bin/sh -c apt-get -y install wget
+RUN /bin/sh -c apt-get -y install apt-transport-https
+RUN /bin/sh -c apt-get -y install unzip
+RUN /bin/sh -c apt-get -y install acl
+RUN /bin/sh -c apt-get -y install libssl1.0
+RUN /bin/sh -c wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
+RUN /bin/sh -c dpkg -i packages-microsoft-prod.deb
+RUN /bin/sh -c apt-get -y update
+RUN /bin/sh -c apt-get -y install aspnetcore-runtime-5.0
+RUN /bin/sh -c mkdir -p /var/www/remotely
+RUN /bin/sh -c mkdir /config
+RUN /bin/sh -c wget -q https://github.com/gtntdev/Remotely/releases/download/v2022.07.06.2131/Remotely_Server_Linux-x64.zip
+RUN /bin/sh -c unzip -o Remotely_Server_Linux-x64.zip -d /var/www/remotely
+RUN /bin/sh -c rm Remotely_Server_Linux-x64.zip
+RUN /bin/sh -c mkdir -p /remotely-data
+RUN /bin/sh -c sed -i 's/DataSource=Remotely.db/DataSource=\/remotely-data\/Remotely.db/' /var/www/remotely/appsettings.json
 
 VOLUME [/remotely-data]
 WORKDIR /var/www/remotely
 COPY ./DockerMain.sh /
-/bin/sh -c chmod 755 /DockerMain.sh
+RUN /bin/sh -c chmod 755 /DockerMain.sh
 ENTRYPOINT ["/DockerMain.sh"]
 
 #LABEL com.azure.dev.image.build.buildnumber=20220716.4
