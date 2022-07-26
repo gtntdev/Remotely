@@ -17,7 +17,7 @@ ENV ASPNETCORE_URLS=http://*:5000
 /bin/sh -c apt-get -y install aspnetcore-runtime-5.0
 /bin/sh -c mkdir -p /var/www/remotely
 /bin/sh -c mkdir /config
-#/bin/sh -c wget -q https://github.com/gtntdev/Remotely/releases/download/v2022.07.06.2131/Remotely_Server_Linux-x64.zip
+/bin/sh -c wget -q https://github.com/gtntdev/Remotely/releases/download/v2022.07.06.2131/Remotely_Server_Linux-x64.zip
 /bin/sh -c unzip -o Remotely_Server_Linux-x64.zip -d /var/www/remotely
 /bin/sh -c rm Remotely_Server_Linux-x64.zip
 /bin/sh -c mkdir -p /remotely-data
