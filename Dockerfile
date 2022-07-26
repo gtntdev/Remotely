@@ -40,3 +40,4 @@ ENTRYPOINT ["/DockerMain.sh"]
 #LABEL com.azure.dev.image.system.teamproject=Remotely
 #LABEL image.base.digest=sha256:fd92c36d3cb9b1d027c4d2a72c6bf0125da82425fc2ca37c414d4f010180dc19
 #LABEL image.base.ref.name=ubuntu:focal
+#test ci
